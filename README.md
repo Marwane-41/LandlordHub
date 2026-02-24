@@ -20,4 +20,5 @@ Tech Stack  ( MERN )
 
 
   
-  
+  <img width="1422" height="478" alt="Screenshot 2026-02-24 at 3 22 32 PM" src="https://github.com/user-attachments/assets/47f34d95-8b0c-4dfd-a391-cff46fafef39" />
+
