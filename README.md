@@ -19,6 +19,8 @@ Tech Stack  ( MERN )
     | MongoDB ( My Database ) 
 
 
-  
-  <img width="1422" height="478" alt="Screenshot 2026-02-24 at 3 22 32 PM" src="https://github.com/user-attachments/assets/47f34d95-8b0c-4dfd-a391-cff46fafef39" />
+Some screenshots from the platform : 
+
+  <img width="1422" height="478" alt="Screenshot 2026-02-24 at 3 22 32 PM" src="https://github.com/user-attachments/assets/47f34d95-8b0c-4dfd-a391-cff46fafef39" /> 
+<img width="1228" height="706" alt="Screenshot 2026-02-25 at 1 49 11 PM" src="https://github.com/user-attachments/assets/001b5b76-6436-4b98-86d6-4fad6f0b1678" />
 
