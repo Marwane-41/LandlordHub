@@ -10,13 +10,14 @@ import path from "path"
 import cors from "cors";
 
 
-
-
 // this is how to initialize an express app 
 const app = express()
 
+// const port = process.env.PORT || 
+
 // we need the frontend to run under the backend , so this is helpful 
 const __dirname = path.resolve()
+const port = process.env.PORT || 5001
 
 // to resolve the cors error 
 app.use(cors());
@@ -29,8 +30,7 @@ app.use(express.json());    // this will parse .json body : req/res
 app.use('/api/payments', PaymentRoutes)   // payments page : /api/payments 
 app.use('/api/tenants', TenantRoutes)   // tenants page : /api/tenants 
 
-// only in production 
-
+// only in production , do this 
 if (process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "../frontend/dist")))
   app.use((req, res) => {
@@ -40,8 +40,7 @@ if (process.env.NODE_ENV === "production"){
 
 // app is listening on port 5001 
 connectDb().then(() => {
-  app.listen(5001, () => {
+  app.listen(port, () => {
     console.log("Server started successfully")  // for debugging purposes 
   });
-
 });
