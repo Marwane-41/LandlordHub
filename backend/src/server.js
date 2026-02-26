@@ -12,12 +12,12 @@ import cors from "cors";
 
 // this is how to initialize an express app 
 const app = express()
-
-// const port = process.env.PORT || 
+const port = process.env.PORT || 5001
 
 // we need the frontend to run under the backend , so this is helpful 
 const __dirname = path.resolve()
-const port = process.env.PORT || 5001
+
+
 
 // to resolve the cors error 
 app.use(cors());
@@ -41,6 +41,6 @@ if (process.env.NODE_ENV === "production"){
 // app is listening on port 5001 
 connectDb().then(() => {
   app.listen(port, () => {
-    console.log("Server started successfully")  // for debugging purposes 
+    console.log(`Server started successfully, running on ${port}`)  // for debugging purposes 
   });
 });
