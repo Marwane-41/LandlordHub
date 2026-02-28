@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import { PenBox, PenIcon, TrashIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
+import api from '../lib/axios';
 
 const EditPayment = () => {
   const [query, setQuery] = useState('');
@@ -22,7 +23,7 @@ const EditPayment = () => {
     const fetchPayments = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('http://localhost:5001/api/payments');
+        const res = await api.get('/payments');
         setPayments(res.data);
         setFiltered(res.data); // Initialize filtered list
       } catch (error) {
@@ -51,7 +52,7 @@ const EditPayment = () => {
 
   
     try {
-      await axios.delete(`http://localhost:5001/api/payments/${selectedPayment._id}`);
+      await api.delete(`/payments/${selectedPayment._id}`);
 
       // closing the modal 
       const modal = document.getElementById("delete_payment_modal");

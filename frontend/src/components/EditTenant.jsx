@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link, PenIcon, TrashIcon } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
+import api from '../lib/axios';
 
 const EditTenant = () => {
   const [query, setQuery] = useState('');
@@ -22,7 +22,7 @@ const EditTenant = () => {
   useEffect(() => {
     const fetchTableTenants = async () => {
       try {
-        const Tenantres = await axios.get("http://localhost:5001/api/tenants");
+        const Tenantres = await api.get("/tenants");
         setTenants(Tenantres.data);
         setFiltered(Tenantres.data); // initialize filtered list
       } catch (err) {
@@ -45,8 +45,8 @@ const EditTenant = () => {
 
     try {
       // send to api : 
-      const res = await axios.put(
-        `http://localhost:5001/api/tenants/${selectedTenant._id}`, editForm
+      const res = await api.put(
+        `/tenants/${selectedTenant._id}`, editForm
         
       );
       // update the UI , no need for refresh : 
@@ -80,7 +80,7 @@ const EditTenant = () => {
     if (!selectedTenant) return;
   
     try {
-      await axios.delete(`http://localhost:5001/api/tenants/${selectedTenant._id}`);
+      await api.delete(`/tenants/${selectedTenant._id}`);
   
       // Remove the tenant from your local state so UI updates immediately
       setTenants(prev => prev.filter(t => t._id !== selectedTenant._id));

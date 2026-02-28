@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+
 import toast from "react-hot-toast";
+import api from "../lib/axios";
 
 const AddPayment = () => {
   const [tenantName, setTenantName] = useState("");
@@ -14,7 +15,7 @@ const AddPayment = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5001/api/payments", {
+      const res = await api.post("/payments", {
         tenantName,
         status,
         amount,

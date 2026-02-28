@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
+import api from "../lib/axios";
 import { Plus, Users, DollarSign, CheckCircle, Clock, Minus, Pencil } from "lucide-react";
 import AddTenant from "../components/AddTenant";
 import AddPayment from "../components/AddPayment";
@@ -20,9 +21,9 @@ const Homepage = () => {
     const fetchData = async () => {
       try {
         const [tenantsRes, paymentsRes, totalRes] = await Promise.all([
-          axios.get("http://localhost:5001/api/tenants"),
-          axios.get("http://localhost:5001/api/payments"),
-          axios.get("http://localhost:5001/api/payments/total"),
+          api.get("/tenants"),
+          api.get("/payments"),
+          api.get("/payments/total"),
         ]);
 
         setTenants(tenantsRes.data);

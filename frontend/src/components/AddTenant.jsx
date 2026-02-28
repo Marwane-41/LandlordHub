@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import api from "../lib/axios";
 
 const AddTenant = () => {
   const [firstName, setFirstName] = useState("");
@@ -20,7 +21,7 @@ const AddTenant = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5001/api/tenants", {
+      const res = await api.post("/tenants", {
         firstName,
         lastName,
         email,
