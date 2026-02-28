@@ -31,12 +31,12 @@ app.use('/api/payments', PaymentRoutes)   // payments page : /api/payments
 app.use('/api/tenants', TenantRoutes)   // tenants page : /api/tenants 
 
 // only in production , do this 
-
+if (process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "../frontend/dist")))
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
-
+}
 
 // app is listening on port 5001 
 connectDb().then(() => {
