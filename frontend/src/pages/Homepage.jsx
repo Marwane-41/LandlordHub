@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import api from "../lib/axios";
 import { Plus, Users, DollarSign, CheckCircle, Clock, Minus, Pencil } from "lucide-react";
 import AddTenant from "../components/AddTenant";
@@ -138,28 +137,7 @@ const Homepage = () => {
 
       </div>
 
-      <div className="grid grid-row gap-3">
-        <h2 className="font-bold p-4"> Recent Activity </h2>
-        {/* I have to fetch the data here to display recent activity , means created a little bit after updating the backend  */}
-          <table className="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Full Name</th>
-                <th>Unit Number</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tenants.map((tenant, index) => (
-                <tr key={index} className="bg-base-200">
-                  <td></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        
-      </div>
+      
 
     </section>
   );

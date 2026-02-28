@@ -1,6 +1,3 @@
-/*
-setting up an express server  
-*/
 import express from "express"          // go to package.json , add a type : "module" for this to work , ES module
 import PaymentRoutes from "./routes/PaymentRoutes.js"
 import TenantRoutes from "./routes/TenantRoutes.js"
