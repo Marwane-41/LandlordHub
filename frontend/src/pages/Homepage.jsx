@@ -137,8 +137,7 @@ const Homepage = () => {
 
       </div>
 
-      
-
+    
     </section>
   );
 };

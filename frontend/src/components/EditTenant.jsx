@@ -19,18 +19,21 @@ const EditTenant = () => {
 
   
   // Fetch tenants
+  const fetchTableTenants = async () => {
+    try {
+      setLoading(true);
+      const res = await api.get("/tenants");
+      setTenants(res.data);
+      setFiltered(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // Run on mount
   useEffect(() => {
-    const fetchTableTenants = async () => {
-      try {
-        const Tenantres = await api.get("/tenants");
-        setTenants(Tenantres.data);
-        setFiltered(Tenantres.data); // initialize filtered list
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchTableTenants();
   }, []);
 
@@ -40,15 +43,15 @@ const EditTenant = () => {
 
   const handleSave = async () => {
     // logic goes here 
-
     if (!selectedTenant)  return;
 
     try {
       // send to api : 
       const res = await api.put(
         `/tenants/${selectedTenant._id}`, editForm
-        
       );
+
+      await fetchTableTenants();
       // update the UI , no need for refresh : 
       setTenants(prev => 
         prev.map(t => t._id === selectedTenant._id ? res.data : t)
@@ -65,14 +68,11 @@ const EditTenant = () => {
       if (modal1) modal1.close();
 
       // toast message , toast shows on the main page 
-      setTimeout(() => {
-        toast.success("Tenant updated successfully!");
-      }, 100); 
+      toast.success("Tenant updated successfully!");
   
     } catch (error) {
       console.error(error);
-      toast.error("update failed!!")
-      
+      toast.error("Update failed!!") 
     }
   }
 
@@ -86,7 +86,7 @@ const EditTenant = () => {
       setTenants(prev => prev.filter(t => t._id !== selectedTenant._id));
       setFiltered(prev => prev.filter(t => t._id !== selectedTenant._id));
   
-      // Close the modal (DOM API consistent with your pattern)
+      // Close the modal 
       const modal = document.getElementById("delete_tenant_modal");
       if (modal) modal.close();
   
