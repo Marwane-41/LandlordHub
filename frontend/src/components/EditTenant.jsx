@@ -42,39 +42,26 @@ const EditTenant = () => {
   };
 
   const handleSave = async () => {
-    // logic goes here 
-    if (!selectedTenant)  return;
-
+    if (!selectedTenant) return;
+  
     try {
-      // send to api : 
-      const res = await api.put(
-        `/tenants/${selectedTenant._id}`, editForm
-      );
-
-      await fetchTableTenants();
-      // update the UI , no need for refresh : 
-      setTenants(prev => 
-        prev.map(t => t._id === selectedTenant._id ? res.data : t)
-      );
-      setFiltered(prev =>
-        prev.map(t => t._id === selectedTenant._id ? res.data : t)
-      );
-      
-      // close the modal : 
+      const res = await api.put(`/tenants/${selectedTenant._id}`, editForm);
+  
+      // Update state directly from the API response
+      setTenants(prev => prev.map(t => t._id === selectedTenant._id ? res.data : t));
+      setFiltered(prev => prev.map(t => t._id === selectedTenant._id ? res.data : t));
+  
       const modal2 = document.getElementById("edit_singletenant_modal");
       const modal1 = document.getElementById("edit_tenant_modal");
-      
       if (modal2) modal2.close();
       if (modal1) modal1.close();
-
-      // toast message , toast shows on the main page 
-      toast.success("Tenant updated successfully!");
   
+      toast.success("Tenant updated successfully!");
     } catch (error) {
       console.error(error);
-      toast.error("Update failed!!") 
+      toast.error("Update failed!!");
     }
-  }
+  };
 
   const handleDeleteTenant = async () => {
     if (!selectedTenant) return;
