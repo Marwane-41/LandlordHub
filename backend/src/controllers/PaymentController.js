@@ -55,7 +55,7 @@ export async function deletePayment(req,res){
 
     try {
         // no need for destructuting 
-        const deletedPayment = await Payment.findByIdAndDelete(req.params.id,{tenantName,amount,status,datePaid})
+        const deletedPayment = await Payment.findByIdAndDelete(req.params.id)
         res.status(200).json({
             message: "Payment info deleted successfully",
             deletedPayment

@@ -12,7 +12,7 @@ const AddTenant = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    
 
     if (!firstName.trim() || !lastName.trim()) {
       toast.error("First and Last Name are required");

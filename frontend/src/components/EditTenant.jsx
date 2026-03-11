@@ -230,9 +230,7 @@ const EditTenant = () => {
                         <form
                          className='flex flex-col gap-3 mt-4'
                          onSubmit={(e)=> {
-                          e.preventDefault();  //prevents page reload 
                           handleSave();
-
                          }}>
 
                           <input
@@ -254,7 +252,6 @@ const EditTenant = () => {
                           }}>
                           </input>
 
-
                           <input
                           className='input input-bordered'
                           placeholder='Unit Number'
@@ -264,7 +261,6 @@ const EditTenant = () => {
                           }}>
                           </input>
 
-
                           <input
                           className='input input-bordered'
                           placeholder='Email'
@@ -273,7 +269,6 @@ const EditTenant = () => {
                             setEditForm({...editForm,email:e.target.value})
                           }}>
                           </input>
-
 
                           <input
                           className='input input-bordered'

@@ -50,7 +50,6 @@ const EditPayment = () => {
   const handleDeletePayment = async () => {
     if(!selectedPayment) return;
 
-  
     try {
       await api.delete(`/payments/${selectedPayment._id}`);
 
@@ -70,7 +69,6 @@ const EditPayment = () => {
   const handleSavedPayment = async () => {
     if(!selectedPayment) return 
   }
-
 
 
   return (
@@ -139,19 +137,17 @@ const EditPayment = () => {
 
         {/* modals for edit and delete buttons  */}
         <dialog id="edit_payment_modal2" className="modal">
-
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Edit Payment</h3>
+            <h3 className="font-bold text-lg">Payment Info</h3>
             
               <form className='flex flex-col gap-4 mt-3'
                 onSubmit={(e)=> {
-                  e.preventDefault();  //prevents page reload 
                   handleSavedPayment();
                }}>
                 
                 <input
                   className='input input-bordered'
-                  placeholder='Full name '
+                  placeholder='Full name'
                   value={editForm.fullname}
                   onChange={(e)=> {
                     setEditForm({...editForm,fullname:e.target.value})
@@ -194,6 +190,7 @@ const EditPayment = () => {
                 > Save Changes  
                 </button>
                 <button className='btn btn-error'
+                onClick={() => document.getElementById("edit_payment_modal2").close()}
                 > Cancel 
                 </button>
 
