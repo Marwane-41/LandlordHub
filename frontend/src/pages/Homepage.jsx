@@ -15,6 +15,23 @@ const Homepage = () => {
   const [unpaidNumber, setUnpaidNumber] = useState(0);
   const [paidNumber, setPaidNumber] = useState(0);
 
+  const recentTenants = [...tenants]
+  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  .slice(0, 5);
+
+
+  const getTenantStatus = (tenantId) => {
+    const tenantPayment = payments.find(p => p.tenant === tenantId);
+  
+    if (!tenantPayment) return "unpaid";
+  
+    return tenantPayment.status?.toLowerCase() === "paid"
+      ? "paid"
+      : "unpaid";
+  };
+
+  const status = getTenantStatus(tenants._id);
+
   // Fetch tenants, payments, totals
   useEffect(() => {
     const fetchData = async () => {
@@ -136,8 +153,30 @@ const Homepage = () => {
         </dialog>
 
 
-        <div> 
-          <h1>Tenants table </h1>
+        <div>
+            <h1 className="text-xl font-bold mb-3">Recent Tenants </h1>
+
+            <div className="flex flex-col gap-2">
+              {recentTenants.map((tenant) => (
+                <div
+                  key={tenant._id}
+                  className="flex justify-between items-center p-3 bg-base-200 rounded-lg"
+                >
+                  <div>
+                    <p className="font-semibold">
+                      {tenant.firstName} {tenant.lastName}
+                    </p>
+                    <p className="text-sm opacity-70">
+                      Unit {tenant.unitNumber}
+                    </p>
+                  </div>
+
+                  <span className="text-sm opacity-60">
+                    {new Date(tenant.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+              ))}
+            </div>
         </div>
 
       </div>
