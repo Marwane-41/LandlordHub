@@ -55,6 +55,7 @@ const EditTenant = () => {
       const modal1 = document.getElementById("edit_tenant_modal");
       if (modal2) modal2.close();
       if (modal1) modal1.close();
+
   
       toast.success("Tenant updated successfully!");
     } catch (error) {
@@ -79,6 +80,7 @@ const EditTenant = () => {
   
       // Clear selected tenant so modal text resets next time
       setSelectedTenant(null);
+      location.reload(true);
   
       // Optional: show toast feedback if you have toast available
       toast.success("Tenant deleted");
@@ -212,6 +214,7 @@ const EditTenant = () => {
                         <button
                           className="btn btn-error"
                           onClick={handleDeleteTenant}
+                          
                         >
                           Delete
                         </button>
@@ -223,7 +226,7 @@ const EditTenant = () => {
                     </form>
                   </dialog>
 
-                  {/* modal for editing tenant */}
+                  {/* modal for editing/deleting tenants */}
                   <dialog id="edit_singletenant_modal" className="modal">
                     <div className="modal-box">
                       <h3 className="font-bold text-lg">Tenant Info</h3>

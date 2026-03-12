@@ -59,6 +59,7 @@ const EditPayment = () => {
 
       setSelectedPayment(null);
       toast.success("Deleted Payment successfully ! ")
+      location.reload(true);
 
     } catch (error) {
       console.error("Error deleting payment:", error);
@@ -148,9 +149,9 @@ const EditPayment = () => {
                 <input
                   className='input input-bordered'
                   placeholder='Full name'
-                  value={editForm.fullname}
+                  value={editForm.tenantName}
                   onChange={(e)=> {
-                    setEditForm({...editForm,fullname:e.target.value})
+                    setEditForm({...editForm,tenantName:e.target.value})
                   }}>
                 </input>
 
@@ -166,18 +167,18 @@ const EditPayment = () => {
                 <input
                   className='input input-bordered'
                   placeholder='Amount paid'
-                  value={editForm.amountpaid}
+                  value={editForm.amout}
                   onChange={(e)=> {
-                    setEditForm({...editForm,amountpaid:e.target.value})
+                    setEditForm({...editForm,amount:e.target.value})
                   }}>
                 </input>
 
                 <input
                   className='input input-bordered'
                   placeholder='Date'
-                  value={editForm.date}
+                  value={editForm.datePaid}
                   onChange={(e)=> {
-                    setEditForm({...editForm,date:e.target.value})
+                    setEditForm({...editForm,datePaid:e.target.value})
                   }}>
                 </input>
 
@@ -224,9 +225,6 @@ const EditPayment = () => {
             </div>
           </div>
 
-          <form method="dialog" className="modal-backdrop">
-            <button></button>
-          </form>
         </dialog>
 
       </div>
