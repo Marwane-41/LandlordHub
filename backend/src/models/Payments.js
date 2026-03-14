@@ -4,7 +4,7 @@ import mongoose, { Schema } from "mongoose";
 // 2 - model based off of that schema 
 
 const paymentSchema = new mongoose.Schema({
-    tenantName: { type: String, required: true },
+    tenantName: { type: mongoose.Schema.Types.ObjectId, ref: 'Tenant', required:true },
     amount: { type: Number,},
     datePaid: { type: Date, required: true },
     status: { type: String, required: true },

@@ -18,6 +18,7 @@ const tenantSchema = new mongoose.Schema({
     },
     email:{type:String},
     phoneNumber:{type:String, required:true},
+    payments: [{ type: mongoose.Schema.Types.ObjectId, ref :'Payment'}]
     
 },{ timestamps:true });
 

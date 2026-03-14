@@ -230,6 +230,7 @@ const EditTenant = () => {
                   <dialog id="edit_singletenant_modal" className="modal">
                     <div className="modal-box">
                       <h3 className="font-bold text-lg">Tenant Info</h3>
+
                         <form
                          className='flex flex-col gap-3 mt-4'
                          onSubmit={(e)=> {
@@ -292,6 +293,7 @@ const EditTenant = () => {
                             <button 
                               type="submit" 
                               className="btn btn-secondary"
+                              onClick={handleSave}
                             >
                               Save Changes
                             </button>

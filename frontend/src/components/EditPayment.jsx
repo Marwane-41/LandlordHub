@@ -11,7 +11,7 @@ const EditPayment = () => {
   const [filtered, setFiltered] = useState([]);
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [editForm, setEditForm] = useState({
-    fullname: "",
+    fullName: "",
     status : "",
     date : "",
     amountpaid : ""
@@ -68,7 +68,22 @@ const EditPayment = () => {
   };
 
   const handleSavedPayment = async () => {
-    if(!selectedPayment) return 
+    if(!selectedPayment) return;
+    try {
+      await api.put(`/payments/${selectedPayment._id}`, {
+        tenantName: editForm.fullName,
+        status: editForm.status,
+        amount: editForm.amount,
+        datePaid: editForm.datePaid,
+      });
+      document.getElementById("edit_payment_modal2").close();
+      setSelectedPayment(null);
+      toast.success("Payment updated successfully!");
+      location.reload(true);
+    } catch (error) {
+      console.error("Error updating payment:", error);
+      toast.error("Could not update payment");
+    }
   }
 
 
@@ -111,7 +126,18 @@ const EditPayment = () => {
                       {/* buttons for edit and delete  */}
 
                         <button 
-                        onClick={()=>document.getElementById('edit_payment_modal2').showModal()}
+                        onClick={()=>{
+                            setSelectedPayment(p);
+                            setEditForm({
+                              fullName: p.tenantName,
+                              status: p.status,
+                              amount: p.amount,
+                              datePaid: p.datePaid,
+                            });
+                            
+                            
+                            document.getElementById('edit_payment_modal2').showModal();
+                        }}
                         className='btn btn-ghost' > 
                         <PenIcon></PenIcon>  Edit 
                         </button>
@@ -144,14 +170,14 @@ const EditPayment = () => {
               <form className='flex flex-col gap-4 mt-3'
                 onSubmit={(e)=> {
                   handleSavedPayment();
-               }}>
+                }}>
                 
                 <input
                   className='input input-bordered'
                   placeholder='Full name'
-                  value={editForm.tenantName}
+                  value={editForm.fullName}
                   onChange={(e)=> {
-                    setEditForm({...editForm,tenantName:e.target.value})
+                    setEditForm({...editForm,fullName:e.target.value})
                   }}>
                 </input>
 
@@ -167,7 +193,7 @@ const EditPayment = () => {
                 <input
                   className='input input-bordered'
                   placeholder='Amount paid'
-                  value={editForm.amout}
+                  value={editForm.amount}
                   onChange={(e)=> {
                     setEditForm({...editForm,amount:e.target.value})
                   }}>
@@ -182,21 +208,20 @@ const EditPayment = () => {
                   }}>
                 </input>
 
+                <div className='flex flex-row justify-end gap-3 mt-4'>
+
+                  <button className='btn  btn-primary'
+                  onClick={handleSavedPayment}
+                  > Save Changes  
+                  </button>
+                  <button className='btn btn-error'
+                  onClick={() => document.getElementById("edit_payment_modal2").close()}
+                  > Cancel 
+                  </button>
+
+                </div>
               </form>
 
-              <div className='flex flex-row justify-end gap-3 mt-4'>
-
-                <button className='btn  btn-primary'
-                onClick={handleSavedPayment}
-                > Save Changes  
-                </button>
-                <button className='btn btn-error'
-                onClick={() => document.getElementById("edit_payment_modal2").close()}
-                > Cancel 
-                </button>
-
-              </div>
-            
           </div>
           <form method="dialog" className="modal-backdrop">
             <button>close</button>
