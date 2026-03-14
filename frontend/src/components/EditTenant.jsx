@@ -226,7 +226,7 @@ const EditTenant = () => {
                     </form>
                   </dialog>
 
-                  {/* modal for editing/deleting tenants */}
+                  {/* modal for editing */}
                   <dialog id="edit_singletenant_modal" className="modal">
                     <div className="modal-box">
                       <h3 className="font-bold text-lg">Tenant Info</h3>
@@ -244,7 +244,6 @@ const EditTenant = () => {
                             setEditForm({...editForm,firstName:e.target.value})
                           }}>
                           </input>
-
 
                           <input
                           className='input input-bordered'

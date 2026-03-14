@@ -30,7 +30,6 @@ const Homepage = () => {
       : "unpaid";
   };
 
-  const status = getTenantStatus(tenants._id);
 
   // Fetch tenants, payments, totals
   useEffect(() => {
