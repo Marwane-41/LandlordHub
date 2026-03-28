@@ -12,9 +12,9 @@ const EditPayment = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [editForm, setEditForm] = useState({
     fullName: "",
-    status : "",
-    date : "",
-    amountpaid : ""
+    status: "",
+    datePaid: "",   // ← matches what you use below
+    amount: ""      // ← matches what you use below
   })
   
 
@@ -40,7 +40,7 @@ const EditPayment = () => {
     const lower = query.toLowerCase();
     const results = payments.filter(
       (p) =>
-        p.tenantName?.toLowerCase().includes(lower) ||
+        `${p.tenantName?.firstName} ${p.tenantName?.lastName}`.toLowerCase().includes(lower) ||
         p.unitNumber?.toString().includes(lower)
     );
     setFiltered(results);
@@ -118,7 +118,7 @@ const EditPayment = () => {
               <tbody>
                 {filtered.map((p) => (
                   <tr key={p._id} className="hover">
-                    <td>{p.tenantName}</td>
+                    <td>{p.tenantName?.firstName} {p.tenantName?.lastName}</td>
                     <td>{p.status}</td>
                     <td>{p.amount}</td>
                     <td>{p.datePaid}</td>
@@ -129,7 +129,7 @@ const EditPayment = () => {
                         onClick={()=>{
                             setSelectedPayment(p);
                             setEditForm({
-                              fullName: p.tenantName,
+                              fullName: `${p.tenantName?.firstName} ${p.tenantName?.lastName}`,
                               status: p.status,
                               amount: p.amount,
                               datePaid: p.datePaid,

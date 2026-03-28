@@ -3,7 +3,8 @@ import Tenant from "../models/Tenants.js";
 
 export async function getAllPayments(req, res) {
   try {
-    const payments = await Payment.find().populate('tenantName', 'firstName lastName unitNumber');
+   // ✅ Make sure you have .populate("tenantName")
+  const payments = await Payment.find().populate("tenantName");
     
     res.status(200).json(payments);
   } catch (error) {
