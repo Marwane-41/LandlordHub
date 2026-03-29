@@ -1,7 +1,8 @@
 Property Management System  | Système de Gestion Immobilière
 
 A full stack property management web app for landlords to track tenants and rent payments — built with the MERN stack and deployed on Railway.
-Live demo: landlordhub.up.railway.app
+
+Live demo: [landlordhub.up.railway.app](https://landlordhub.up.railway.app/)
 
 Features : 
 
