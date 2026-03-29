@@ -14,15 +14,16 @@ Search & Filter — Search payments by tenant name or unit number
 Edit & Delete — Update or remove tenant and payment records in real time
 
 
-Tech Stack
-Frontend
+Tech Stack : 
+
+- Frontend
 
 React (Vite)
 Tailwind CSS + DaisyUI
 Lucide React (icons)
 React Hot Toast (notifications)
 
-Backend
+- Backend
 
 Node.js
 Express.js
@@ -30,16 +31,18 @@ Mongoose (ODM)
 MongoDB (Atlas)
 
 Getting Started
-Prerequisites
+
+Prerequisites: 
 
 Node.js v18+
 MongoDB Atlas account (or local MongoDB)
 
-1. Clone the repo
+
+1. Clone the repo: 
 bashgit clone https://github.com/marwane-41/LandlordHub.git
 cd LandlordHub
 
-3. Set up environment variables
+3. Set up environment variables: 
 Create a .env file inside the backend/ folder 
 
 5. Install dependencies
