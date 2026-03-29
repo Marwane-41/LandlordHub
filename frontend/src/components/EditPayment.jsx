@@ -15,7 +15,7 @@ const EditPayment = () => {
     status: "",
     datePaid: "",   // ← matches what you use below
     amount: ""      // ← matches what you use below
-  })
+  })  
   
 
   // Fetch payments on mount

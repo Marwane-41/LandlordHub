@@ -20,7 +20,6 @@ const __dirname = path.resolve()
 app.use(cors());
 
 dotenv.config(); // ; is required 
-
 //middleware // to display values 
 app.use(express.json());    // this will parse .json body : req/res
 
