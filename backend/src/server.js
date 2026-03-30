@@ -6,7 +6,6 @@ import { connectDb } from "../config/db.js"
 import path from "path"
 import cors from "cors";
 
-
 // this is how to initialize an express app 
 const app = express()
 const port = process.env.PORT || 5001
@@ -15,18 +14,18 @@ const port = process.env.PORT || 5001
 const __dirname = path.resolve()
 
 
-
 // to resolve the cors error 
 app.use(cors());
 
 dotenv.config(); // ; is required 
+
 //middleware // to display values 
 app.use(express.json());    // this will parse .json body : req/res
 
 app.use('/api/payments', PaymentRoutes)   // payments page : /api/payments 
 app.use('/api/tenants', TenantRoutes)   // tenants page : /api/tenants 
 
-// only in production , do this 
+// ================     only in production , do this   =====================================
 if (process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "../frontend/dist")))
   app.use((req, res) => {
@@ -34,7 +33,9 @@ if (process.env.NODE_ENV === "production"){
   });
 }
 
-// app is listening on port 5001 
+// ================     only in production , do this   ===================================== 
+
+
 connectDb().then(() => {
   app.listen(port, () => {
     console.log(`Server started successfully, running on ${port}`)  // for debugging purposes 

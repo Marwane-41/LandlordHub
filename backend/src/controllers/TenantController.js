@@ -1,4 +1,3 @@
-//debugging 
 import Tenant from "../models/Tenants.js";
 
 export async function getAllTenants(req,res) {
